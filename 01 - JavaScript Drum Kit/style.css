@@ -2,13 +2,13 @@ html {
   font-size: 10px;
   background: url('./background.jpg') bottom center;
   background-size: cover;
-}
+} /* background image overlay,  */
 
 body,html {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
+} /**/
 
 .keys {
   display: flex;
@@ -16,7 +16,7 @@ body,html {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-}
+} /**/
 
 .key {
   border: .4rem solid black;
@@ -36,7 +36,7 @@ body,html {
   transform: scale(1.1);
   border-color: #ffc600;
   box-shadow: 0 0 1rem #ffc600;
-}
+} /**/
 
 kbd {
   display: block;
