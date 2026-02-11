@@ -84,6 +84,16 @@ function removeTransition(e) {
 const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 window.addEventListener('keydown', playSound);
+/*
+Bug notes:
+- If you hold down a key, it will play the sound repeatedly. Hold it long enough, animation breaks and stays
+in transitionend state. 
+Solution: add a check to see if the key is already in the playing state, if so, don't add the class again. 
+This will prevent the animation from breaking.
+- Audio cuts at the very end. Sounds weird. Might be the audio file itself.
+Solution: add my own audio files that finishes the sound properly.
+That JustBlaze drum pack might come in handy...
+*/
 </script>
 
 
