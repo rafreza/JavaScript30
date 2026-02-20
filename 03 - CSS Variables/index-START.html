@@ -12,7 +12,7 @@
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"> <!-- THIS IS HOW YOU ADD A BODY COMMENT...this is the slider. -->
     
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px"> <!--data-sizing is a custom attribute it's suffix is 'px' which will be important for the blur and spacing slider -->
 
     <label for="base">Base Color</label>
     <input id="base" type="color" name="base" value="#ffc600">
@@ -58,7 +58,14 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input'); //selects all the inputs inside the controls class and stores them in a variable called inputs.
     
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || ''; //gets the value of the data-sizing attribute from the input that triggered the event and stores it in a variable called suffix. If the data-sizing attribute is not present, it defaults to an empty string.
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix); //sets the CSS variable with the name of the input (e.g. --spacing) to the value of the input plus the suffix (e.g. 10px). This updates the CSS variables in real-time as the user interacts with the inputs.
+    }
+    inputs.forEach(input => input.addEventListener('change', handleUpdate)); //for each input, add an event listener that listens for the change event and calls the handleUpdate function.
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate)); //for each input, add an event listener that listens for the mousemove event and calls the handleUpdate function. This allows the CSS variables to update in real-time as the user moves the slider.
   </script>
 
 </body>
