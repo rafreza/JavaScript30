@@ -9,7 +9,7 @@
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
   <div class="controls">
     <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"> <!-- THIS IS HOW YOU ADD A BODY COMMENT -->
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"> <!-- THIS IS HOW YOU ADD A BODY COMMENT...this is the slider. -->
     
     <label for="blur">Blur:</label>
     <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
@@ -21,7 +21,20 @@
   <img src="https://images.contentstack.io/v3/assets/blt06f605a34f1194ff/bltc1564bc44f66a900/675e1262cbd7d6bc5f15c6b0/japan-725347-Header_Mobile.jpg?fit=crop&disable=upscale&auto=webp&quality=60&crop=smart">
 
   <style>
+    :root {
+      --spacing: 10px;
+      --blur: 10px;
+      --base: #ffc600;
+    }
+    img {
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+      background: var(--base);
+    }
 
+    .hl{
+      color: var(--base); /*Translates to: anything with the 'hl' class will be colored with the base variable value. */
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
