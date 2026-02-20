@@ -72,8 +72,42 @@
   </style>
 
   <script>
+    const secondHand = document.querySelector('.second-hand');
+    const minsHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
 
+    function setTime() {
+      const now = new Date();
 
+      const seconds = now.getSeconds();
+      const secondsDegrees = ((seconds / 60) * 360) + 90;
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+      const mins = now.getMinutes();
+      const minsDegrees = ((mins / 60) * 360) + 90;
+      minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+      const hour = now.getHours();
+      const hourDegrees = ((hour / 12) * 360) + 90;
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    }
+
+    setInterval(setTime, 1000);
+
+    setTime(); // run it once to set the initial time
+
+    /*
+    Improvement points:
+    - The minute hand should move slightly as the seconds pass, 
+    and the hour hand should move slightly as the minutes pass, 
+    so that the clock is more accurate and doesn't jump every minute or hour.
+
+    - Hour hand should be shorter than minute hand, and minute hand should be shorter than second hand, hard to tell which is which at a glance.
+
+    - Time zone support, maybe a dropdown to select different time zones and show multiple clocks?
+
+    - I hate that background, maybe add a toggle to switch between different backgrounds, or even better, let the user upload their own background image for the clock?
+    */
   </script>
 </body>
 </html>
