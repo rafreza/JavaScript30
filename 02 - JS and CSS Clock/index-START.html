@@ -19,7 +19,7 @@
 
   <style>
     html {
-      background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
+      background: #873030;
       background-size: cover;
       font-family: 'helvetica neue';
       text-align: center;
@@ -107,6 +107,11 @@
     - Time zone support, maybe a dropdown to select different time zones and show multiple clocks?
 
     - I hate that background, maybe add a toggle to switch between different backgrounds, or even better, let the user upload their own background image for the clock?
+    - Clock hands are jerky when they go from 59 seconds to 0 seconds, 
+    because the transition is still trying to rotate from 354 degrees to 450 degrees 
+    (90 + 360), so it goes the long way around instead of just jumping back to 90 degrees. 
+    We can fix this by removing the transition when we set the time to 0 seconds, and then re-adding it after a short delay.
+
     */
   </script>
 </body>
