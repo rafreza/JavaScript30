@@ -60,15 +60,31 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    const category = document.querySelector('.mw-category'); //selects the element with the class of mw-category and stores it in a variable called category.
+    const links = Array.from(category.querySelectorAll('a')); //selects all the anchor elements inside the category element and converts the NodeList to an array using Array.from() and stores it in a variable called links.
+    const de = links.map(link => link.textContent).filter(streetName => streetName.includes('de')); //maps over the links array and returns the text content of each link, then filters the array to include only the street names that include 'de' and stores it in a variable called de.
+    console.log(de); //logs the array of street names that include 'de' to the console.
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const alpha = people.sort((lastOne, nextOne) => {
+      const [aLast, aFirst] = lastOne.split(', '); //splits the lastOne string into an array of two elements: the last name and the first name. The destructuring assignment syntax is used to assign the last name to aLast and the first name to aFirst.
+      const [bLast, bFirst] = nextOne.split(', '); //splits the nextOne string into an array of two elements: the last name and the first name. The destructuring assignment syntax is used to assign the last name to bLast and the first name to bFirst.
+      return aLast > bLast ? 1 : -1; //compares the last names of a and b and returns 1 if a's last name is greater than b's last name, otherwise it returns -1. This sorts the people alphabetically by last name.
+    });
+    console.log(alpha); //logs the sorted array of people to the console.
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    const transportation = data.reduce(function(obj, item) {
+      if(!obj[item]) {
+        obj[item] = 0; //if the item is not already a property of the object, it is added as a property with a value of 0.
+      }
+      obj[item]++; //the value of the property is incremented by 1 for each occurrence of the item in the data array.
+      return obj; //the updated object is returned after each iteration of the reduce method.
+    }, {}); //The initial value of the accumulator is set to an empty object.
   </script>
 </body>
 </html>
