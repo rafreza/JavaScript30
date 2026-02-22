@@ -17,7 +17,12 @@
   </form>
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const cities = []; //declare empty array to hold data fetched from endpoint
 
+fetch(endpoint) 
+  .then(Blob => Blob.json()) // fetch data from endpoint and convert to json
+  .then(data => cities.push(...data)) //fetch data and convert to json, we push the data into the cities since cities variable is a constant and we can't reassign it, but we can push data into it. We use the spread operator to push each item in the data array into the cities array.
+  // '...' is the spread operator, it takes each item in the data array and pushes it into the cities array. If we didn't use the spread operator, we would be pushing the entire data array into the cities array as a single item, which is not what we want.
 </script>
 </body>
 </html>
