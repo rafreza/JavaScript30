@@ -39,7 +39,7 @@
       /* Safari transitionend event.propertyName === flex */
       /* Chrome + FF transitionend event.propertyName === flex-grow */
       transition:
-        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11), /* Text transformation */
         flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
         background 0.2s;
       font-size: 20px;
@@ -67,8 +67,8 @@
       justify-content: center;
       align-items: center;
     }
-
-    .panel > *:first-child { transform: translateY(-100%); }
+    /* This is where the word transformation happens*/
+    .panel > *:first-child { transform: translateY(-100%); } 
     .panel.open-active > *:first-child { transform: translateY(0); }
     .panel > *:last-child { transform: translateY(100%); }
     .panel.open-active > *:last-child { transform: translateY(0); }
@@ -139,7 +139,7 @@
         this.classList.toggle('open-active');
       }
     }
-
+    // Transformation occurs upon click, and the transitionend event is fired when the CSS transition has completed.
     panels.forEach(panel => panel.addEventListener('click', toggleOpen));
     panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
   </script>
