@@ -23,6 +23,19 @@ fetch(endpoint)
   .then(Blob => Blob.json()) // fetch data from endpoint and convert to json
   .then(data => cities.push(...data)) //fetch data and convert to json, we push the data into the cities since cities variable is a constant and we can't reassign it, but we can push data into it. We use the spread operator to push each item in the data array into the cities array.
   // '...' is the spread operator, it takes each item in the data array and pushes it into the cities array. If we didn't use the spread operator, we would be pushing the entire data array into the cities array as a single item, which is not what we want.
+function findMatches(wordToMatch, cities) {
+  return cities.filter(place => {
+    // here we need to figure out if the city or state matches what was searched
+    const regex = new RegExp(wordToMatch, 'gi'); // 'g' for global search, 'i' for case insensitive
+    return place.city.match(regex) || place.state.match(regex); // if the city or state matches the regex, we return true and the item will be included in the filtered array
+  });
+}
+function displayMatches() {
+  const matchArray = findMatches(this.value, cities); // we call the findMatches function and pass in the value of the search input and the cities array. This will return an array of matching cities and states.
+   
+}
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches); // we want to listen for both 'change' and 'keyup' events on the search input, so that we can display matches as the user types and also when they change the input (e.g. by pasting text)
 </script>
 </body>
 </html>
