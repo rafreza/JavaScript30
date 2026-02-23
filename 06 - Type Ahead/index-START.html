@@ -38,16 +38,16 @@ function displayMatches() {
   const matchArray = findMatches(this.value, cities);
   const html = matchArray.map(place => {
     const regex = new RegExp(this.value, 'gi');
-    const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
-    const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+    const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`); // we use the replace method to highlight the matching text in the city name by wrapping it in a span with a class of 'hl'. We create a new regex for the current value of the search input, and then we replace any matches in the city name with the highlighted version.
+    const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`); // we do the same for the state name, so that if the user searches for a state, it will also be highlighted in the results.
     return `
       <li>
         <span class="name">${cityName}, ${stateName}</span>
         <span class="population">${numberWithCommas(place.population)}</span>
       </li>
-    `;
+    `; // we use template literals to create an HTML string for each match. We also use the replace method to highlight the matching text in the city and state names by wrapping it in a span with a class of 'hl'. The numberWithCommas function is used to format the population number with commas.
   }).join('');
-  suggestions.innerHTML = html;
+  suggestions.innerHTML = html; // we take the array of matches and create an HTML string that we can insert into the suggestions element. We use the map method to create an array of HTML strings for each match, and then we join them together into a single string. Finally, we set the innerHTML of the suggestions element to the HTML string we created.
 }
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches); // we want to listen for both 'change' and 'keyup' events on the search input, so that we can display matches as the user types and also when they change the input (e.g. by pasting text)
