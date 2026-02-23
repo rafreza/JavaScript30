@@ -30,9 +30,14 @@ function findMatches(wordToMatch, cities) {
     return place.city.match(regex) || place.state.match(regex); // if the city or state matches the regex, we return true and the item will be included in the filtered array
   });
 }
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); // this function takes a number and adds commas to it for thousands, millions, etc. It uses a regular expression to find the positions where commas should be added and replaces them with a comma.
+}
+
 function displayMatches() {
   const matchArray = findMatches(this.value, cities); // we call the findMatches function and pass in the value of the search input and the cities array. This will return an array of matching cities and states.
-   
+  const html = matchArray.map(place => {})
+
 }
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches); // we want to listen for both 'change' and 'keyup' events on the search input, so that we can display matches as the user types and also when they change the input (e.g. by pasting text)
