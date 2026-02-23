@@ -49,6 +49,10 @@ function displayMatches() {
   }).join('');
   suggestions.innerHTML = html; // we take the array of matches and create an HTML string that we can insert into the suggestions element. We use the map method to create an array of HTML strings for each match, and then we join them together into a single string. Finally, we set the innerHTML of the suggestions element to the HTML string we created.
 }
+
+const searchInput = document.querySelector('.search'); // we select the search input element and the suggestions element so that we can add event listeners to the search input and update the suggestions when the user types.
+const suggestions = document.querySelector('.suggestions'); // we select the suggestions element so that we can update it with the matching results when the user types in the search input.
+
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches); // we want to listen for both 'change' and 'keyup' events on the search input, so that we can display matches as the user types and also when they change the input (e.g. by pasting text)
 </script>
