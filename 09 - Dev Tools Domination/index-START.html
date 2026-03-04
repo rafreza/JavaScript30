@@ -19,29 +19,54 @@
     }
 
     // Regular
-
+    console.log('Hello');
     // Interpolated
-
+    console.log('Hello I am a %s string!', '💩');
     // Styled
-
+    console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue');
     // warning!
-
+    console.warn('nononononononono');
     // Error :|
-
+    console.error('Headassery detected!');
     // Info
+    console.info('This is some information.');
 
     // Testing
-
+    const p = document.querySelector('p'); // selects the first <p> element in the document
+    console.assert(p.classList.contains('ouch'), 'That is wrong!'); // checks if the <p> element has a class of 'ouch' and logs an error message if it doesn't
     // clearing
-
+    console.clear();
     // Viewing DOM Elements
-
+    console.log(p); // logs the <p> element to the console
+    console.dir(p); // logs the properties of the <p> element to the console as a JavaScript object
+    console.clear();
     // Grouping together
-
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`); // starts a new collapsed group in the console with the dog's name as the label
+      console.log(`This is ${dog.name}`); // logs the dog's name to the console
+      console.log(`${dog.name} is ${dog.age} years old`); // logs the dog's age to the console
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`); // logs the dog's age in dog years to the console
+      console.groupEnd(`${dog.name}`); // ends the current group in the console
+    });
     // counting
-
+    console.count('Wes'); // logs the number of times 'Wes' has been counted to the console
+    console.count('Wes'); 
+    console.count('Wes'); 
+    console.count('Wes');  
+    console.count('Steve'); // logs the number of times 'Steve' has been counted to the console 
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');  
     // timing
+    console.time('fetching data'); // starts a timer with the label 'fetching data'
+    fetch('https://api.github.com/users/wesbos') // makes a fetch request to the GitHub API for the user 'wesbos'
+      .then(data => data.json()) // converts the response to JSON
+      .then(data => {
+        console.timeEnd('fetching data'); // ends the timer with the label 'fetching data' and logs the time taken to the console
+        console.log(data); // logs the data received from the API to the console
+      });
 
+    console.table(dogs); // logs the 'dogs' array to the console in a table format
   </script>
 </body>
 </html>
