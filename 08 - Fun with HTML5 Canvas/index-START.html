@@ -8,6 +8,11 @@
 <body>
 <canvas id="draw" width="800" height="800"></canvas>
 <script>
+  const canvas = document.getElementById('draw'); // Get the canvas element by its ID, initialize a variable named 'canvas' to reference it, id is 'draw' referenced in the HTML code above, this allows us to manipulate the canvas in JavaScript
+  const ctx = canvas.getContext('2d'); // Get the 2D rendering context for the canvas
+
+  canvas.width = window.innerWidth; // Set the canvas width to the width of the browser window
+  canvas.height = window.innerHeight; // Set the canvas height to the height of the browser window
 </script>
 
 <style>
