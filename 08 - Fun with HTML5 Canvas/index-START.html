@@ -13,6 +13,15 @@
 
   canvas.width = window.innerWidth; // Set the canvas width to the width of the browser window
   canvas.height = window.innerHeight; // Set the canvas height to the height of the browser window
+
+  ctx.strokeStyle = '#BADA55'; // Set the stroke color for drawing to a light green color
+  ctx.lineJoin = 'round'; // Set the style of how lines join together to 'round'
+  ctx.lineCap = 'round'; // Set the style of how lines end to 'round'
+
+  let isDrawing = false; // Initialize a variable to track whether the user is currently drawing
+  let lastX = 0; // Initialize a variable to store the last X coordinate of the mouse
+  let lastY = 0; // Initialize a variable to store the last Y coordinate of the mouse
+ 
 </script>
 
 <style>
