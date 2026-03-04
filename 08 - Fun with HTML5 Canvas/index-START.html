@@ -21,7 +21,51 @@
   let isDrawing = false; // Initialize a variable to track whether the user is currently drawing
   let lastX = 0; // Initialize a variable to store the last X coordinate of the mouse
   let lastY = 0; // Initialize a variable to store the last Y coordinate of the mouse
- 
+  let hue = 0; // Initialize a variable to track the current hue for the stroke color
+  let direction = true; // Initialize a variable to track the direction of the line width change
+
+  function draw(e) {
+    if (!isDrawing) return; // If the user is not currently drawing, exit the function
+    //ctx stands for CONTEXT, and is the variable we initialized earlier to get the 2D rendering context of the canvas. We can use this variable to call various methods and set properties related to drawing on the canvas.
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`; // Set the stroke color using HSL format, with the hue changing over time
+    ctx.beginPath(); // Begin a new path for drawing
+    ctx.moveTo(lastX, lastY); // Move to the last recorded mouse position
+    ctx.lineTo(e.offsetX, e.offsetY); // Draw a line to the current mouse position
+    ctx.stroke(); // Stroke the path to render it on the canvas
+
+    [lastX, lastY] = [e.offsetX, e.offsetY]; // Update the last mouse position to the current position
+
+    hue++; // Increment the hue for the next stroke
+    if (hue >= 360) {
+      hue = 0; // Reset hue back to 0 after reaching 360
+    }
+
+    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+      direction = !direction; // Reverse direction if line width reaches limits
+    }
+
+    if (direction) {
+      ctx.lineWidth++; // Increase line width if direction is true
+    } else {
+      ctx.lineWidth--; // Decrease line width if direction is false
+    }
+  }
+
+  canvas.addEventListener('mousedown', (e) => { // event listener for when the mouse button is pressed down on the canvas
+    isDrawing = true; // Set isDrawing to true when the mouse button is pressed down
+    [lastX, lastY] = [e.offsetX, e.offsetY]; // Update the last mouse position to the current position
+  });
+  //Reminder: Draw function will never initialize until the mouse is pressed down, because isDrawing is false by default, and the draw function checks for that at the beginning. This means that the user must click and hold the mouse button on the canvas to start drawing, and the drawing will continue as long as the mouse button is held down and the mouse is moved.
+  canvas.addEventListener('mousemove', draw); // event listener for when the mouse is moved over the canvas, calls the draw function
+  canvas.addEventListener('mouseup', () => isDrawing = false); // event listener for when the mouse button is released, sets isDrawing to false
+  canvas.addEventListener('mouseout', () => isDrawing = false); // event listener for when the mouse leaves the canvas area, sets isDrawing to false
+
+/*
+Future improvements:
+- Corner button that clears the canvas
+- Save button that saves the canvas as an image
+- Touch support for mobile devices (hard to test on desktop, but can be done with Chrome DevTools device mode)
+*/
 </script>
 
 <style>
