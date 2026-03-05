@@ -97,6 +97,41 @@
   </div>
 
 <script>
+// Get all the checkboxes
+// Add a click event listener to each checkbox
+// On click, check if the shift key is being held
+// If it is, find the first checked checkbox and the last checked checkbox
+// Loop through the checkboxes in between and set their checked property to true
+
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+let lastChecked; // This variable will keep track of the last checked checkbox
+function handleCheck(e) {
+  // Check if they had the shift key down
+  // AND check that they are checking it
+  let inBetween = false;
+  if (e.shiftKey && this.checked) { // If the shift key is held and the current checkbox is being checked
+    checkboxes.forEach(checkbox => { // Loop through each checkbox
+      if (checkbox === this || checkbox === lastChecked) {
+        inBetween = !inBetween; // Toggle inBetween when we hit either the current checkbox or the last checked checkbox
+      }
+      if (inBetween) {
+        checkbox.checked = true; // If we are in between, check the checkbox
+      }
+    });
+  }
+  lastChecked = this; // Set the lastChecked to the current checkbox
+}
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck)); // Loop through each checkbox and add a click event listener that calls the handleCheck function
+
+
+/* Points to consider:
+- 'this' refers to the checkbox that was clicked on
+- when handling events, 'this' is the element that the event handler is attached to
+- we need to keep track of the last checked checkbox so that we know where to start and end the inBetween logic
+- we can use a boolean variable 'inBetween' to determine when we are between the last checked checkbox and the current checkbox
+- anytime you want to deal with inputs from a keyboard, you can check the event object for properties like 'shiftKey' to see if the shift key was held down during the event.
+- 'e' refers to the event object that is passed to the event handler function, which contains information about the event that occurred, such as which keys were pressed, which element was clicked, etc.
+*/
 </script>
 </body>
 </html>
