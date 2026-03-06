@@ -35,3 +35,18 @@ function scrub(e) {
   video.currentTime = scrubTime; // Update the video's current time to the scrub time
 }
 //Hook up event listeners
+video.addEventListener('click', togglePlay); // Toggle play/pause when the video is clicked
+video.addEventListener('play', updateButton); // Update the play/pause button when the video starts playing
+video.addEventListener('pause', updateButton); // Update the play/pause button when the video is paused
+video.addEventListener('timeupdate', handleProgress); // Update the progress bar as the video plays
+
+toggle.addEventListener('click', togglePlay); // Toggle play/pause when the toggle button is clicked
+skipButtons.forEach(button => button.addEventListener('click', skip)); // Add click event listeners to all skip buttons
+ranges.forEach(range => range.addEventListener('change', handleRangeUpdate)); // Add change event listeners to all range sliders
+ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate)); // Add mousemove event listeners to all range sliders for real-time updates
+
+let mousedown = false; // Flag to track whether the mouse is currently down on the progress bar
+progress.addEventListener('click', scrub); // Scrub to the clicked position on the progress bar
+progress.addEventListener('mousemove', (e) => mousedown && scrub(e)); // Scrub to the current mouse position if the mouse is down
+progress.addEventListener('mousedown', () => mousedown = true); // Set mousedown to true when the mouse button is pressed down on the progress bar
+progress.addEventListener('mouseup', () => mousedown = false); // Set mousedown to false when the mouse button is released on the progress bar
