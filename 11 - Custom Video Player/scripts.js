@@ -24,4 +24,14 @@ function skip() {
 function handleRangeUpdate() {
   video[this.name] = this.value; // Update the video's property (volume or playbackRate) based on the range input's name and value
 }
+
+function handleProgress() {
+  const percent = (video.currentTime / video.duration) * 100; // Calculate the percentage of the video that has been played
+  progressBar.style.flexBasis = `${percent}%`; // Update the progress bar's flex basis to reflect the current progress
+}
+
+function scrub(e) {
+  const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration; // Calculate the time to scrub to based on where the user clicked on the progress bar
+  video.currentTime = scrubTime; // Update the video's current time to the scrub time
+}
 //Hook up event listeners
