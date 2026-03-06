@@ -7,22 +7,22 @@
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
 <body>
-
+<!-- Custom HTML5 video player   -->
    <div class="player">
-     <video class="player__video viewer" src="652333414.mp4"></video>
+     <video class="player__video viewer" src="652333414.mp4"></video> 
 
-     <div class="player__controls">
+     <div class="player__controls">   <!-- Custom controls for the video player  -->
        <div class="progress">
         <div class="progress__filled"></div>
        </div>
-       <button class="player__button toggle" title="Toggle Play">►</button>
-       <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1">
-       <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1">
-       <button data-skip="-10" class="player__button">« 10s</button>
-       <button data-skip="25" class="player__button">25s »</button>
+       <button class="player__button toggle" title="Toggle Play">►</button> <!-- Play/pause button  -->
+       <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1"> <!-- Sliders to control volume and playback speed of the video  -->
+       <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1"> <!-- Sliders to control volume and playback speed of the video  -->
+       <button data-skip="-10" class="player__button">« 10s</button> <!-- Skip buttons to jump forward or backward in the video  -->
+       <button data-skip="25" class="player__button">25s »</button> <!-- Skip buttons to jump forward or backward in the video   -->
      </div>
    </div>
 
-  <script src="scripts.js"></script>
+  <script src="scripts.js"></script> <!-- JavaScript file to handle the functionality of the custom video player  -->
 </body>
 </html>
