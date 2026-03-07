@@ -10,6 +10,17 @@
     <script>
       const pressed = []; //key log array, this is where we will store the keys that are being pressed
       const secretCode = 'wesbos'; //the secret code that we want to detect, this can be anything you want
+
+      window.addEventListener('keyup', (e) => { //we listen for the keyup event on the window, this will fire every time a key is released
+        console.log(e.key); //log the key that was released, this is just for debugging purposes
+        pressed.push(e.key); //add the key that was released to the pressed array
+        pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length); //this line is a bit tricky, it removes the first element of the pressed array if it exceeds the length of the secret code, this way we only keep the last few keys that were pressed
+        if (pressed.join('').includes(secretCode)) { //if the pressed array joined as a string includes the secret code, then we have detected the secret code
+          console.log('DING DING!'); //log that we have detected the secret code, this is just for debugging purposes
+          cornify_add(); //call the cornify_add function from the cornify.js file, this will add a unicorn to the page
+        }
+        console.log(pressed); //log the pressed array, this is just for debugging purposes
+      });
     </script>
   </body>
 </html>
