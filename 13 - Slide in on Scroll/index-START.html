@@ -71,10 +71,10 @@
         const isHalfShown = slideInAt > sliderImages.offsetTop; // check if the image is half shown
         const isNotScrolledPast = window.scrollY < imageBottom; // check if the image has not been scrolled past
         if (isHalfShown && isNotScrolledPast) { // if the image is half shown and has not been scrolled past, add the class 'active' to the image
-          sliderImages.classList.add('active');
+          sliderImages.classList.add('active'); 
         } else {
           sliderImages.classList.remove('active'); // otherwise, remove the class 'active' from the image
-        }
+        } // you can add the class 'active' to the image in CSS to make it slide in, and remove it to make it slide out, depending on the scroll position.
       })
     }
     window.addEventListener('scroll', debounce(checkSlide)); // add an event listener to the window that listens for the scroll event and calls the checkSlide function, but only once every 20 milliseconds
