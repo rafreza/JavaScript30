@@ -44,7 +44,10 @@
   </div>
 
   <script>
-    function debounce(func, wait = 20, immediate = true) {
+    // debounce is a function that limits the rate at which a function can fire. 
+    // It will only allow the function to be called once every X milliseconds,
+    // and if immediate is true, it will trigger the function on the leading edge, instead of the trailing.
+    function debounce(func, wait = 20, immediate = true) { 
       var timeout;
       return function() {
         var context = this, args = arguments;
@@ -59,6 +62,12 @@
       };
     }
 
+    const sliderImages = document.querySelectorAll('.slide-in'); // select all the images with the class 'slide-in'
+    
+    function checkSlide(e) {
+      
+    }
+    window.addEventListener('scroll', debounce(checkSlide)); // add an event listener to the window that listens for the scroll event and calls the checkSlide function, but only once every 20 milliseconds
   </script>
 
   <style>
