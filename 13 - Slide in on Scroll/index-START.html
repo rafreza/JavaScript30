@@ -65,7 +65,17 @@
     const sliderImages = document.querySelectorAll('.slide-in'); // select all the images with the class 'slide-in'
     
     function checkSlide(e) {
-      
+      sliderImages.forEach(sliderImages=> {
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImages.height / 2; // calculate the point at which the image should start sliding in
+        const imageBottom = sliderImages.offsetTop + sliderImages.height; // calculate the bottom of the image, offsetTop is the distance from the top of the page to the top of the image, and height is the height of the image.
+        const isHalfShown = slideInAt > sliderImages.offsetTop; // check if the image is half shown
+        const isNotScrolledPast = window.scrollY < imageBottom; // check if the image has not been scrolled past
+        if (isHalfShown && isNotScrolledPast) { // if the image is half shown and has not been scrolled past, add the class 'active' to the image
+          sliderImages.classList.add('active');
+        } else {
+          sliderImages.classList.remove('active'); // otherwise, remove the class 'active' from the image
+        }
+      })
     }
     window.addEventListener('scroll', debounce(checkSlide)); // add an event listener to the window that listens for the scroll event and calls the checkSlide function, but only once every 20 milliseconds
   </script>
